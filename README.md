@@ -27,13 +27,14 @@ you skip this step.
   * Import the following needed modules:
 
 ```python
-    import rhinoscriptsyntax as rs
-    import scriptcontext as rsc
-    import sys
-    #Add your site-packages directory to the path if you need to.
-    sys.path.append("C:\\Python27\\Lib\\site-packages\\")
-    from charted import charted
-    import operator
+import rhinoscriptsyntax as rs
+import scriptcontext as rsc
+import sys
+
+#Add your site-packages directory to the path if you need to.
+sys.path.append("C:\\Python27\\Lib\\site-packages\\")
+from charted import charted
+import operator
 
 ```
 
@@ -44,8 +45,10 @@ scene = charted.Scene(rs)
 ```
 * The Scene class has several configurable attributes that have reasonable defaults that you can choose to overide. 
 * If you run what we have so far, it won't look like much has happened, but we have created a boundary that is 100 units wide (using the default unit of the file), that has an aspect ratio of 1920 x 1080, and you have two new layers.  One called "Scene Boundary" that will be off by default, and a current layer called "Charted".  The bottom left corner of the scene boundary is placed at (0,0,0).
-
-
+* Notice that we have only need to pass in rhinoscriptsyntax.  All of the basic aspects of the Scene object can be overriden.  Here is an example with all of Scene's options shown:
+```python
+scene = chart.Scene(rs, sceneBottomLeft =(10,10,10), sceneResolution = (640,480), sceneWidth = 300, sceneBorderVisible = True, sceneLayerName = "Test Scene")
+```
 
 ## More about delegation and some background:
 
@@ -60,8 +63,8 @@ When I started researching this problem I came across this on stackoverflow:  ht
 The author calls this problem "configuration sprawl", and that's a good description.
 
 ```python
-class RhinoGraphChart:
-    options = RhinoGraphScene.options.add(
+class Chart:
+    options = Scene.options.add(
                                         chartVerticalOffset = .65,
                                         chartHorizontalOffset = 0,
                                         chartHeight = .35,
