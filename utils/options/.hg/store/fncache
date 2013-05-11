@@ -1,0 +1,13 @@
+data/pytest.ini.i
+data/setup.py.i
+data/example.py.i
+data/test/test_funclike.py.i
+data/nulltype.py.i
+data/test/test.py.i
+data/.hgignore.i
+data/testprop.py.i
+data/tox.ini.i
+data/README.rst.i
+data/options.py.i
+data/__init__.py.i
+data/funclike.py.i
