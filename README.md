@@ -21,7 +21,8 @@ class objects behave and feel like javascript's prototype pattern.
   * Enter the command "EditPythonScript".
   * In Rhino's Python editor, go to "Tools", "Options", then under the "Script Engine" tab, check the box for "Enable Frames".  None of this will work if
 you skip this step.
-![Enable Frames](frankfralick.github.com/charted/images/FramesEnabled.png)
+
+![Enable Frames](https://raw.github.com/frankfralick/Charted/master/images/FramesEnabled.PNG)
 
   * Import the following needed modules:
 
@@ -35,6 +36,15 @@ you skip this step.
     import operator
 
 ```
+
+* Next we need to create a scene.  The instance of the Scene object we will create is the prototype that will be customized to create specific types of representations.
+
+```python
+scene = charted.Scene(rs)
+```
+* The Scene class has several configurable attributes that have reasonable defaults that you can choose to overide. 
+* If you run what we have so far, it won't look like much has happened, but we have created a boundary that is 100 units wide (using the default unit of the file), that has an aspect ratio of 1920 x 1080, and you have two new layers.  One called "Scene Boundary" that will be off by default, and a current layer called "Charted".  The bottom left corner of the scene boundary is placed at (0,0,0).
+
 
 
 ## More about delegation and some background:
