@@ -1,8 +1,6 @@
-= charted =
+#Charted
 
-w
-  The goal is to
-provide an extension to Rhino's API that allows for the creation of both simple and complex
+The goal is to provide an extension to Rhino's API that allows for the creation of both simple and complex
 visualizations, as well as offering the possibility of creating novel visualizations that would
 otherwise be difficult with other popular javascript/svg based tools and frameworks.
 
@@ -10,30 +8,27 @@ The design goal of this code is to supply objects that are very featureful and a
 unobtrusive and easy to implement.  This is accomplished through a delegation pattern that makes 
 class objects behave and feel like javascript's prototype pattern.
 
-=== Installation and dependencies: ===
+##Installation and dependencies:
 
-*For now, for ease of getting going, I am including all dependencies not part
-of the standard library.
-*Clone into your standard CPython site-packages directory.
+  * For now, for ease of getting going, I am including all dependencies not part of the standard library.
+  * Clone into your standard CPython site-packages directory.
 
-=== Getting started ===
+## Getting started:
 
-#Open a new session of Rhino and maximize the top view.
-#Enter the command "EditPythonScript".
-#In Rhino's Python editor, go to "Tools", "Options", then under the "Script
-Engine" tab, check the box for "Enable Frames".  None of this will work if
+  * Open a new session of Rhino and maximize the top view.
+  * Enter the command "EditPythonScript".
+  * In Rhino's Python editor, go to "Tools", "Options", then under the "Script Engine" tab, check the box for "Enable Frames".  None of this will work if
 you skip this step.
 
-#Import the following needed modules:
+  * Import the following needed modules:
 
-{{{
-    #!python
+```python
     import 
 
-}}}
+```
 
 
-=== More about delegation and some background: ===
+## More about delegation and some background:
 
 A while back I had the need to create a lot of scatter plots that were varying over time, with the 
 intent to eventually composite them together into an animation.  If you imagine writing a class to describe 
@@ -45,8 +40,7 @@ When I started researching this problem I came across this on stackoverflow:  ht
 
 The author calls this problem "configuration sprawl", and that's a good description.
 
-{{{
-#!python
+```python
 class RhinoGraphChart:
     options = RhinoGraphScene.options.add(
                                         chartVerticalOffset = .65,
@@ -88,7 +82,7 @@ class RhinoGraphChart:
                                         uniformTextAngle = False
                                         )
 
-}}}
+```
 
 
 === Features: ===
