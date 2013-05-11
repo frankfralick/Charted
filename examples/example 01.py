@@ -8,4 +8,4 @@ import operator
 import clr
 
 
-scene = charted.RhinoGraphScene(rs, sceneWidth = 300)
+scene = charted.Scene(rs, sceneWidth = 300)

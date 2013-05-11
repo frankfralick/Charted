@@ -96,20 +96,19 @@ class RhinoLayerSelection(PbException):
     def __str__(self):
         return repr("Make sure there are object on the layer named "+str(self.layer))
 
-class RhinoGraphBase:
+class Base:
     pass
 
-class RhinoGraphScene(RhinoGraphBase):
+class Scene(Base):
     options = Options(
                       sceneBottomLeft = (0,0,0),
                       sceneWidth = 100,
                       sceneResolution = (1920,1080),
                       sceneBorderVisible = False,
-                      sceneLayerName = "RhinoGraphScene"
+                      sceneLayerName = "Charted"
                       )
 
     options.magic(
-                  #sceneWidth = lambda v, cur: RGmaxWidth(v, cur.sceneWidth),
                   chartXAxisDiv = lambda v, cur: RGaxisXDiv(v, cur.chartDataSeriesXY,cur.chartXAxisStyle),# if isinstance(cur.chartXAxisStyle, None) else v,
                   chartYAxisDiv = lambda v, cur: RGaxisYDiv(v, cur.chartDataSeriesXY,cur.chartYAxisStyle)# if isinstance(cur.chartYAxisStyle, None) else v,
                   )
@@ -117,7 +116,7 @@ class RhinoGraphScene(RhinoGraphBase):
         if rs.IsLayer(self.options.sceneLayerName)==False:
             rs.AddLayer(self.options.sceneLayerName)
             rs.CurrentLayer(self.options.sceneLayerName)
-        self.options = RhinoGraphScene.options.push(kwargs)
+        self.options = Scene.options.push(kwargs)
         self.sceneBottomLeft = self.options.sceneBottomLeft
         self.sceneWidth = self.options.sceneWidth
         #print "SCENEWIDTH:   "+str(self.sceneWidth)
@@ -154,8 +153,8 @@ class RhinoGraphScene(RhinoGraphBase):
         #rs.ViewCameraTarget(camera = (self.sceneCentroid[0], self.sceneCentroid[1], self.sceneCentroid[2]+self.sceneCameraHeight),target = self.sceneCentroid)
         rs.ZoomBoundingBox(self.sceneBoundingBox)
 
-class RhinoGraphChart:
-    options = RhinoGraphScene.options.add(
+class Chart:
+    options = Scene.options.add(
                                         chartVerticalOffset = .65,
                                         chartHorizontalOffset = 0,
                                         chartHeight = .35,
@@ -270,10 +269,10 @@ class RhinoGraphChart:
         for thisObject in self.allObjects:
             self.rs.DeleteObject(thisObject)
 
-class RhinoGraphScatter(RhinoGraphChart):
+class Scatter(Chart):
     def __init__(self, rs, rsc, math, scene, **kwargs):
         #super(RhinoGraphScatter, self).__init__(rs, rsc, math, scene, **kwargs)
-        RhinoGraphChart.__init__(self,rs,rsc,math,scene,**kwargs)
+        Chart.__init__(self,rs,rsc,math,scene,**kwargs)
         if self.options.chartShowAxes == True:
             self.axisX = rs.AddLine((self.axisOriginX, self.axisOriginY, self.axisOriginZ),
                                         (self.axisXExtentX, self.axisXExtentY, self.axisXExtentZ))
@@ -391,8 +390,8 @@ class RhinoGraphScatter(RhinoGraphChart):
                         matIndex = rs.ObjectMaterialIndex(self.dataPoints[i][1])
                         rs.MaterialTransparency(matIndex,self.options.hatchTransparencyValue)
 
-class RhinoGraphTwitter(RhinoGraphChart):
-    options = RhinoGraphChart.options.add(
+class RhinoGraphTwitter(Chart):
+    options = Chart.options.add(
                                           timeLabel = "Sunday, 10/28/12, 00:00 EST",
                                           timeLabelLeftOffset = 0,
                                           timeLabelBottomOffset = 0,
@@ -404,7 +403,7 @@ class RhinoGraphTwitter(RhinoGraphChart):
                                           timeLabelColor = (80,80,80)
                                           )
     def __init__(self, rs, rsc, math, scene, **kwargs):
-        RhinoGraphChart.__init__(self,rs,rsc,math,scene,**kwargs)
+        Chart.__init__(self,rs,rsc,math,scene,**kwargs)
         self.options = RhinoGraphTwitter.options.push(kwargs)
         self.timeLabel = self.options.timeLabel
         self.bottomLeft = self.setBlCoord(self.options.timeLabelBottomOffset,self.options.timeLabelLeftOffset)
