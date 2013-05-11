@@ -33,7 +33,6 @@ you skip this step.
     sys.path.append("C:\\Python27\\Lib\\site-packages\\")
     from charted import charted
     import operator
-    import clr
 
 ```
 
