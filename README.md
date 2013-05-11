@@ -1,10 +1,12 @@
 #Charted
 
-The goal is to provide an extension to Rhino's API that allows for the creation of both simple and complex
+
+Charted is a Python framework for visualizing data in Rhinoceros 3d.  The goal is to provide an 
+extension to Rhino's API that allows for the creation of both simple and complex
 visualizations, as well as offering the possibility of creating novel visualizations that would
 otherwise be difficult with other popular javascript/svg based tools and frameworks.
 
-The design goal of this code is to supply objects that are very featureful and at the same time 
+Charted aims to supply objects that are very featureful and at the same time 
 unobtrusive and easy to implement.  This is accomplished through a delegation pattern that makes 
 class objects behave and feel like javascript's prototype pattern.
 
@@ -19,11 +21,19 @@ class objects behave and feel like javascript's prototype pattern.
   * Enter the command "EditPythonScript".
   * In Rhino's Python editor, go to "Tools", "Options", then under the "Script Engine" tab, check the box for "Enable Frames".  None of this will work if
 you skip this step.
+![Enable Frames](frankfralick.github.com/charted/images/FramesEnabled.png)
 
   * Import the following needed modules:
 
 ```python
-    import 
+    import rhinoscriptsyntax as rs
+    import scriptcontext as rsc
+    import sys
+    #Add your site-packages directory to the path if you need to.
+    sys.path.append("C:\\Python27\\Lib\\site-packages\\")
+    from charted import charted
+    import operator
+    import clr
 
 ```
 
