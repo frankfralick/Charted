@@ -47,7 +47,8 @@ scene = charted.Scene(rs)
 * If you run what we have so far, it won't look like much has happened, but we have created a boundary that is 100 units wide (using the default unit of the file), that has an aspect ratio of 1920 x 1080, and you have two new layers.  One called "Scene Boundary" that will be off by default, and a current layer called "Charted".  The bottom left corner of the scene boundary is placed at (0,0,0).
 * Notice that we have only need to pass in rhinoscriptsyntax.  All of the basic aspects of the Scene object can be overriden.  Here is an example with all of Scene's options shown:
 ```python
-scene = chart.Scene(rs, sceneBottomLeft =(10,10,10), sceneResolution = (640,480), sceneWidth = 300, sceneBorderVisible = True, sceneLayerName = "Test Scene")
+scene = chart.Scene(rs, sceneBottomLeft =(10,10,10), sceneResolution = (640,480), 
+                        sceneWidth = 300, sceneBorderVisible = True, sceneLayerName = "Test Scene")
 ```
 
 ## More about delegation and some background:
