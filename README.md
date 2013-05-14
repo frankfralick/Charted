@@ -13,7 +13,16 @@ class objects behave and feel like JavaScript's prototype pattern.
 *Example frame taken Hurricane Sandy animation (detail available at http://youtu.be/Q3tIfvF3sOc ):*
 ![SandyExample](https://raw.github.com/frankfralick/Charted/master/images/1845.png)
 
-##Installation and dependencies:
+### Features:
+
+* Support for basic chart types that aren't terrible (I'm looking at you pie chart) like scatter, bar, histogram, and more to come.
+* Support for animating time-series data.
+* Support for geospatial data visualizations (specifically working with shapefiles).
+* Utility functions for obtaining and parsing Twitter and Instagram data.
+
+
+
+### Installation and dependencies:
 
   * For now, for ease of getting going, I am including all dependencies not part of the standard library.
   * Clone Charted into your standard CPython site-packages directory.
@@ -38,7 +47,6 @@ import sys
 sys.path.append("C:\\Python27\\Lib\\site-packages\\")
 from charted import charted
 import operator
-
 ```
 
 ### Making a Scene:
@@ -57,8 +65,6 @@ import operator
 scene = charted.Scene(rs)
 ```
 
-
-
 * The Scene class has several configurable attributes that have reasonable defaults that you can choose to overide. 
 * If you run what we have so far, it won't look like much has happened, but we have created a boundary that is 100 units wide (using the default unit of the file), that has an aspect ratio of 1920 x 1080, and you have two new layers.  One called "Scene Boundary" that will be off by default, and a current layer called "Charted".  The bottom left corner of the scene boundary is placed at (0,0,0). 
 ![BasicScene](https://raw.github.com/frankfralick/Charted/master/images/BasicScene.png)
@@ -72,7 +78,6 @@ scene = chart.Scene(rs, sceneBottomLeft =(10,10,10), sceneResolution = (640,480)
 ### A simple scatter chart
 * Create a fresh file or undo what has already been done.  
 * An important aspect of Charted is that all attributes of class objects come with defaults, even data sets.  You create objects that override some aspects of the defaults and the rest shines through.  When we begin to 
-
 
 ## More about delegation and some background:
 
@@ -131,12 +136,7 @@ class Chart:
 ```
 
 
-### Features:
 
-*Support for basic chart types that aren't terrible (I'm looking at you pie chart) like scatter, bar, histogram, and more to come.
-*Support for animating time-series data.
-*Support for geospatial data visualizations.
-*Utility functions for obtaining and parsing Twitter and Instagram data.
 
 
 
