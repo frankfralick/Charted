@@ -5,7 +5,22 @@ import sys
 sys.path.append("C:\\Python27\\Lib\\site-packages\\")
 from charted import charted
 import operator
-import clr
 
 
-scene = charted.Scene(rs, sceneWidth = 300)
+
+scene = charted.Scene(rs)
+
+
+
+
+
+
+
+
+
+
+#scatterChart = charted.Scatter(rs,rsc,scene)
+
+#scatterChart.deleteObjects()
+
+

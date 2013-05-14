@@ -1,10 +1,4 @@
-"""PyBuilding is a Python module made to facilitate the moving building
-   data between building scale modelling tools as well as downstream to
-   object scale modelling tools in ways that are useful.
-
-   This module aims to organize API proceedures of commonly used software
-   packages into a framework on which ad-hoc, building specific solutions
-   can be generated."""
+"""Written by Frank Fralick."""
 import sys
 sys.path.append("C:\\Python27\\Lib\\site-packages\\")
 sys.path.append("C:\\Python27\\Lib\\")
@@ -194,9 +188,9 @@ class Chart:
                                         uniformTextAngle = False
                                         )
 
-    def __init__(self, rs, rsc, math, scene,**kwargs):
+    def __init__(self, rs, rsc, scene,**kwargs):
         self.scene = scene
-        self.options = RhinoGraphChart.options.push(kwargs)
+        self.options = Chart.options.push(kwargs)
         self.allObjects = []
         try:
             if self.options.chartVerticalOffset+self.options.chartHeight > 1:
@@ -270,9 +264,8 @@ class Chart:
             self.rs.DeleteObject(thisObject)
 
 class Scatter(Chart):
-    def __init__(self, rs, rsc, math, scene, **kwargs):
-        #super(RhinoGraphScatter, self).__init__(rs, rsc, math, scene, **kwargs)
-        Chart.__init__(self,rs,rsc,math,scene,**kwargs)
+    def __init__(self, rs, rsc, scene, **kwargs):
+        Chart.__init__(self,rs,rsc,scene,**kwargs)
         if self.options.chartShowAxes == True:
             self.axisX = rs.AddLine((self.axisOriginX, self.axisOriginY, self.axisOriginZ),
                                         (self.axisXExtentX, self.axisXExtentY, self.axisXExtentZ))
@@ -580,7 +573,7 @@ def UtilsDateToSeconds(yearMonthDay,hourMinutes):
     return totalSeconds
         
 def InstallTest():
-    return "It worked!  You can now start working with charted."
+    return "It worked!  You can now start working with Charted."
 
 def Version():
     return "Version 1.0"
