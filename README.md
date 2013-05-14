@@ -10,7 +10,7 @@ Charted aims to supply objects that are very featureful and at the same time
 unobtrusive and easy to implement.  This is accomplished through a delegation pattern that makes 
 class objects behave and feel like JavaScript's prototype pattern.
 
-*Example frame taken Hurricane Sandy animation (detail available at http://youtu.be/Q3tIfvF3sOc):*
+*Example frame taken Hurricane Sandy animation (detail available at http://youtu.be/Q3tIfvF3sOc ):*
 ![SandyExample](https://raw.github.com/frankfralick/Charted/master/images/1845.png)
 
 ##Installation and dependencies:
