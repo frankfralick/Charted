@@ -1,23 +1,25 @@
 #Charted
 
 
-Charted is a Python framework for visualizing data in Rhinoceros 3d.  The goal is to provide an 
+Charted is an experimental Python framework for visualizing data in McNeel's Rhinoceros 3d.  The goal is to provide an 
 extension to Rhino's API that allows for the creation of both simple and complex
 visualizations, as well as offering the possibility of using Rhino's powerful modelling/drawing capabilities in creating novel visualizations that would
 otherwise be difficult with other popular JavaScript/SVG based tools and frameworks.
 
-Charted aims to supply objects that are very featureful and at the same time 
-unobtrusive and easy to implement.  This is accomplished through a delegation pattern that makes 
-class objects behave and feel like JavaScript's prototype pattern.
+Currently the way charts are made is done using classes and functions that are part of this library.  I am researching how I might incorporate one of the many existing libraries like matplotlib (via CPythonServer) rather than reinvent most of the wheel.
+
+The broader goal is not to provide another random data viz framework, but to wrap an existing one, and doing so with a delegation pattern that makes Charted's class objects behave and feel like JavaScript's prototype pattern.
+
+
 
 *Example frame taken Hurricane Sandy animation (detail available at http://youtu.be/Q3tIfvF3sOc ):*
 ![SandyExample](https://raw.github.com/frankfralick/Charted/master/images/1845.png)
 
 ### Features:
 
-* Support for basic chart types that aren't terrible (I'm looking at you pie chart) like scatter, bar, histogram, and more to come.
+* Support for some basic chart types that aren't terrible (I'm looking at you pie chart).
 * Support for animating time-series data.
-* Support for geospatial data visualizations (specifically working with shapefiles).
+* Support for geospatial data visualizations using the widely available shapefile format.
 * Utility functions for obtaining and parsing Twitter and Instagram data.
 
 
@@ -84,12 +86,12 @@ scene = chart.Scene(rs, sceneBottomLeft =(10,10,10), sceneResolution = (640,480)
 A while back I had the need to create a lot of scatter plots that were varying over time, with the 
 intent to eventually composite them together into an animation.  If you imagine writing a class to describe 
 scatter plot, you would be immediately confronted with a problem.  There are many possible ways to draw
-such a chart, and an object meant to encapsulate that concept will have to be constructed with just as many 
-arguments.
+such a chart, and an object meant to encapsulate a chart, with all its myriad ways of being configured, will have to be constructed with just as many 
+arguments.Charted aims to supply objects that are very featureful and at the same time unobtrusive and easy to implement.
 
 When I started researching this problem I came across this on stackoverflow:  http://stackoverflow.com/questions/11702437/where-to-keep-options-values-paths-to-important-files-etc/11703813#11703813
 
-The author calls this problem "configuration sprawl", and that's a good description.
+The author calls this problem "configuration sprawl", and that's a good description.  Below is part of what the internals of the Chart class looks like:
 
 ```python
 class Chart:
@@ -134,6 +136,10 @@ class Chart:
                                         )
 
 ```
+
+These configurable options are all optional, and can be set in a way that can change the defaults for all future instances while still allowing each instance the opportunity to have their own instance overrides that don't change your new default.  Here is a simple example that illustrates the point.
+
+In the first instance we will create two scatter charts.  One with a data set we supply, and another that gets all defaults.
 
 
 
