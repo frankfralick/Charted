@@ -3,7 +3,9 @@ import sys
 sys.path.append("C:\\Python27\\Lib\\site-packages\\")
 sys.path.append("C:\\Python27\\Lib\\")
 import utils.stuf
-from utils.options import Options, attrs
+from utils.options import Options, attrs, Unset
+
+
 import math
 import operator
 import ast
@@ -96,6 +98,7 @@ class Base:
 class Scene(Base):
     options = Options(
                       sceneBottomLeft = (0,0,0),
+                      sceneNormal = (0,0,1),
                       sceneWidth = 100,
                       sceneResolution = (1920,1080),
                       sceneBorderVisible = False,
@@ -243,6 +246,9 @@ class Chart:
         self.axisXLayerName = self.options.axisXLayerName
         self.axisYLayerName = self.options.axisYLayerName
 
+    def set(self, **kwargs):
+        self.options.set(**kwargs)
+
     def setBlCoord(self,bottomOffset,leftOffset):
         """
         @type bottomOffset: Float
@@ -313,6 +319,7 @@ class Scatter(Chart):
         if self.options.axisXTickVisible == True:
             if self.options.chartXAxisDiv == None:
                 self.chartXAxisDiv = RGaxisXDiv(1,self.chartDataSeriesXY)
+        print self.chartXAxisDiv
         self.axisXTickCount = self.chartXAxisDiv[0]
         print "This is chartXAxisDiv:    "+str(self.chartXAxisDiv)
         print self.axisXTickCount
